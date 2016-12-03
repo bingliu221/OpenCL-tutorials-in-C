@@ -80,7 +80,7 @@ int main () {
     clBuildProgram (program, num_devices, devices, NULL, NULL, NULL);
 
     /* 创建矢量相加的 OpenCL 内核 */
-    cl_kernel kernel = clCreateKernel (program, "vec_add", &err);
+    cl_kernel kernel = clCreateKernel (program, "vec_add", NULL);
 
     /* 向内核函数传递参数 */
     clSetKernelArg (kernel, 0, sizeof (cl_mem), &buffer_a);
@@ -102,7 +102,6 @@ int main () {
     /* 验证计算结果 */
     for (int i = 0; i < num_elements; i++) {
         if (c[i] != i + i) {
-            result = 0;
             printf ("Output is incorrect\n");
             break;
         }
